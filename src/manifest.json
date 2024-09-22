@@ -1,0 +1,33 @@
+{
+  "name": "crx-react",
+  "description": "A Chrome extension demo.",
+  "version": "1.0.0",
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": ["https://www.youtube.com/*"],
+  "action": {
+    "default_title": "Youtube Extension"
+  },
+  "background": {
+    "service_worker": "background.ts"
+  },
+  "content_scripts": [
+    {
+      "matches": [ "https://www.youtube.com/*" ],
+      "js": ["content-scripts/content.tsx"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [{
+    "matches": ["https://www.youtube.com/*"],
+    "resources": ["assets/*"]
+  }],
+  "manifest_version": 3
+}
